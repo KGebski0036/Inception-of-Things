@@ -17,7 +17,3 @@ sudo argocd app get my-app
 sudo argocd app sync my-app
 sudo argocd app set my-app --sync-policy automated
 
-kubectl wait pods -n dev --all --for condition=Ready --timeout=600s
-sleep 5
-sudo kubectl port-forward service/playground-service -n dev 8888:8888
-
