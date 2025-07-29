@@ -3,7 +3,9 @@
 sudo kubectl port-forward svc/argocd-server -n argocd 8080:443  &>/dev/null &
 sleep 5
 
-ARGO_PWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+ARGO_PWD=$(sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+
+echo "Password to dashboard: $ARGO_PWD"
 
 sudo argocd login localhost:8080 --username admin --password $ARGO_PWD --insecure
 
